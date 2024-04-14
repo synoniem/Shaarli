@@ -9,8 +9,6 @@
 # - SHAARLI_LETSENCRYPT_EMAIL Contact email for certificate renewal
 # - SHAARLI_DOCKER_TAG        Shaarli docker tag to use
 #                             See: https://github.com/shaarli/Shaarli/pkgs/container/shaarli/versions?filters%5Bversion_type%5D=tagged
-version: '3'
-
 networks:
   http-proxy:
 
@@ -43,7 +41,7 @@ services:
     restart: always
 
   traefik:
-    image: traefik:2.11-alpine
+    image: traefik:2.11
     container_name: traefik
     command: 
       - "--api.insecure=false"
