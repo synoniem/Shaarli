@@ -23,40 +23,47 @@ services:
   shaarli:
     image: ghcr.io/shaarli/shaarli:${SHAARLI_DOCKER_TAG}
     build: ./
+    container_name: shaarli
     networks:
       - http-proxy
     volumes:
       - shaarli-cache:/var/www/shaarli/cache
       - shaarli-data:/var/www/shaarli/data
     labels:
-      traefik.domain: "${SHAARLI_VIRTUAL_HOST}"
-      traefik.backend: shaarli
-      traefik.frontend.rule: "Host:${SHAARLI_VIRTUAL_HOST}"
+      - "traefik.enable=true"
+      - "traefik.http.routers.shaarli.rule=Host(`${SHAARLI_VIRTUAL_HOST}`)"
+      - "traefik.http.routers.shaarli.entrypoints=web"
+      - "traefik.http.routers.shaarli.middlewares=https_redirect"
+      - "traefik.http.routers.shaarlisecure.rule=Host(`${SHAARLI_VIRTUAL_HOST}`)"
+      - "traefik.http.routers.shaarlisecure.entrypoints=websecure"
+      - "traefik.http.routers.shaarlisecure.tls=true"
+      - "traefik.http.routers.shaarlisecure.tls.certresolver=myresolver"
+      - "traefik.http.middlewares.https_redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.https_redirect.redirectscheme.permanent=true"
+    restart: always
 
   traefik:
-    image: traefik:1.7-alpine
-    command:
-      - "--defaultentrypoints=http,https"
-      - "--entrypoints=Name:http Address::80 Redirect.EntryPoint:https"
-      - "--entrypoints=Name:https Address::443 TLS"
-      - "--retry"
-      - "--docker"
-      - "--docker.domain=${SHAARLI_VIRTUAL_HOST}"
-      - "--docker.exposedbydefault=true"
-      - "--docker.watch=true"
-      - "--acme"
-      - "--acme.domains=${SHAARLI_VIRTUAL_HOST}"
-      - "--acme.email=${SHAARLI_LETSENCRYPT_EMAIL}"
-      - "--acme.entrypoint=https"
-      - "--acme.onhostrule=true"
-      - "--acme.storage=/acme/acme.json"
-      - "--acme.httpchallenge"
-      - "--acme.httpchallenge.entrypoint=http"
+    image: traefik:2.11-alpine
+    container_name: traefik
+    command: 
+      - "--api.insecure=false"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entryPoints.web.address=:80"
+      - "--entryPoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.email=${SHAARLI_LETSENCRYPT_EMAIL}"
+      - "--certificatesresolvers.myresolver.acme.storage=/acme/acme.json"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+    ports:
+      # The HTTP port
+      - 80:80
+      # The HTTPS port
+      - 443:443
+      # The Docker Web UI (if enabled by --api.insecure=true)
+      #- 8080:8080
     networks:
       - http-proxy
-    ports:
-      - 80:80
-      - 443:443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - traefik-acme:/acme
+    restart: always
