@@ -21,6 +21,7 @@ See [REST API](REST-API.md) for a list of official and community clients.
 - [emojione](https://github.com/immanuelfodor/emojione) by [@immanuelfodor](https://github.com/immanuelfodor) - Resurrected fork of the original emojione project
 - [favicons](https://github.com/trailjeep/shaarli-favicons) by [@trailjeep](https://github.com/trailjeep) - Shaarli plugin to add favicon/filetype icons to Shaares.
 - [google analytics](https://github.com/ericjuden/Shaarli-Google-Analytics-Plugin) by [@ericjuden](https://github.com/ericjuden): Adds Google Analytics tracking support
+- [image-upload](https://github.com/meerkatzenwildschein/shaarli-image-upload) by [@meerkatzenwildschein](https://github.com/meerkatzenwildschein): Upload images to your Shaarli for use in Shaares. Good for blogging/microblogging.
 - [launch](https://github.com/ArthurHoaro/launch-plugin) - Launch Plugin is a plugin designed to enhance and customize Launch Theme for Shaarli.
 - [markdown-toolbar](https://github.com/immanuelfodor/shaarli-markdown-toolbar) by [@immanuelfodor](https://github.com/immanuelfodor) - Easily insert markdown syntax into the Description field when editing a Shaare.
 - [offen](https://github.com/waschinski/shaarli-offen/) by [@waschinski](https://github.com/waschinski) - Shaarli plugin that adds Offen analytics tracking code to Shaarli pages.
@@ -28,10 +29,10 @@ See [REST API](REST-API.md) for a list of official and community clients.
 - [shaargem](https://forge.tourmentine.com/n/shaarli-plugin-shaargem) by [@n](https://forge.tourmentine.com/n): Allow to shaare gemini capsules.
 - [shaarli-descriptor](https://github.com/immanuelfodor/shaarli-descriptor) by [@immanuelfodor](https://github.com/immanuelfodor) - Customize the default height/number of rows of the Description field when editing a Shaare.
 - [shaarli2mastodon](https://github.com/kalvn/shaarli2mastodon) by [@kalvn](https://github.com/kalvn) - This Shaarli plugin allows you to automatically publish links you post on your Mastodon timeline.
+- [shaarli2bluesky](https://github.com/kalvn/shaarli2bluesky) by [@kalvn](https://github.com/kalvn) - Automatically post your links from Shaarli to Bluesky.
 - [shaarli2twitter](https://github.com/ArthurHoaro/shaarli2twitter) by [@ArthurHoaro](https://github.com/ArthurHoaro) - Automatically tweet your Shaares from Shaarli
 - [social](https://github.com/alexisju/social) by [@alexisju](https://github.com/alexisju): share links to social networks.
 - [targetblank](https://github.com/waschinski/shaarli-targetblank) by [@waschinski](https://github.com/waschinski): Shaarli plugin to open all external links in new tabs/windows
-- [urlextern](https://github.com/trailjeep/shaarli-urlextern) by [@trailjeep](https://github.com/trailjeep) - Shaarli plugin to open external links in a new tab/window.
 - [webhooks](https://gitlab.com/flow.gunso/shaarli-webhooks) by [@flow.gunso](https://gitlab.com/flow.gunso) - Shaarli plugin that enables user-defined callback URL, i.e. webhooks, for specific Shaarli events (link saving, deletion...)
 
 
